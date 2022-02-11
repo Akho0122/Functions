@@ -65,3 +65,9 @@ const transformer = function (str, fn) {
 };
 transformer('JavaScript is the best!', upperFirstWord);
 transformer('JavaScript is the best!', oneWord);
+
+const high5 = function () {
+  console.log('Hi');
+};
+document.body.addEventListener('click', high5);
+['Jonas', 'Martha', 'Adam'].forEach(high5);
