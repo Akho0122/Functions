@@ -38,25 +38,76 @@
 // newPassport(jonas);
 // checkIn(flight, jonas);
 
-const oneWord = function (str) {
-  return str.replaceAll(' ', '').toLowerCase();
-};
-const upperFirstWord = function (str) {
-  const [first, ...other] = str.split(' ');
-  return [first.toUpperCase(), ...other].join(' ');
-};
-const transformer = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
-  console.log(`Transformed by ${fn.name}`);
-};
+// const oneWord = function (str) {
+//   return str.replaceAll(' ', '').toLowerCase();
+// };
+// const upperFirstWord = function (str) {
+//   const [first, ...other] = str.split(' ');
+//   return [first.toUpperCase(), ...other].join(' ');
+// };
+// const transformer = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+//   console.log(`Transformed by ${fn.name}`);
+// };
 
-transformer('JavaScript is the best', upperFirstWord);
-transformer('JavaScript is the best', oneWord);
+// transformer('JavaScript is the best', upperFirstWord);
+// transformer('JavaScript is the best', oneWord);
 
-const high5 = function () {
-  console.log('HI');
+// const high5 = function () {
+//   console.log('HI');
+// };
+// document.body.addEventListener('click', high5);
+
+// ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
 };
-document.body.addEventListener('click', high5);
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
 
-['Jonas', 'Martha', 'Adam'].forEach(high5);
+greet('Heelo')('Jonas');
+
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+greetArr('HI')('Akho');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+lufthansa.book('239', 'Jonas Schmedtmann');
+lufthansa.book(432, 'John Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+const book = lufthansa.book;
+// book(23, 'Sarah Wiliams');
+book.call(eurowings, 23, 'Sarah Wiliams');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+book.call(swiss, 777, 'Akho 0122');
+
+const flightData = [555, 'George Cooper'];
+book.apply(swiss, flightData);
