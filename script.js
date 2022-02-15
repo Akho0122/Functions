@@ -111,3 +111,39 @@ book.call(swiss, 777, 'Akho 0122');
 
 const flightData = [555, 'George Cooper'];
 book.apply(swiss, flightData);
+book.call(swiss, ...flightData);
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+bookEW(222, 'Steven Williams');
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Akho0122');
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(100));
+console.log(addVAT(200));
+
+const addVAT2 = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+// const addTaxRate = addVAT2(0.23);
+// console.log(addTaxRate(200));
+// console.log(addTaxRate(23));
+console.log(addVAT2(0.1)(100));
