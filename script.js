@@ -1,79 +1,45 @@
 'use strict';
 
-// const bookings = [];
-
-// const createBooking = function (flightNum = 0, numPassengers = 1, price = 1) {
-//   const booking = {
-//     flightNum,
-//     numPassengers,
-//     price,
-//   };
-//   console.log(booking);
-//   bookings.push(booking);
-// };
-// createBooking('LH123');
-// createBooking('LH123', 3, 800);
-
-// const flight = 'LH123';
+// const flight = 'LH234';
 // const jonas = {
-//   name: 'John Smith',
-//   password: 1234567654,
+//   name: 'Jonas Schmedtmann',
+//   passport: 2438392948,
 // };
+
 // const checkIn = function (flightNum, passenger) {
 //   flightNum = 'LH999';
 //   passenger.name = 'Mr. ' + passenger.name;
-//   if (passenger.password === 1234567654) {
-//     alert('Checked In');
+//   if (passenger.passport === 2438392948) {
+//     alert('Check In');
 //   } else {
-//     alert('Wrong Passport');
+//     alert('Wrong passport');
 //   }
 // };
-// checkIn(flight, jonas);
+// // checkIn(flight, jonas);
 // console.log(flight);
 // console.log(jonas);
 
 // const newPassport = function (person) {
-//   person.password = Math.trunc(Math.random() * 1000000000);
+//   person.passport = Math.trunc(Math.random() * 1000000000);
 // };
 // newPassport(jonas);
 // checkIn(flight, jonas);
 
 // const oneWord = function (str) {
-//   return str.replaceAll(' ', '').toLowerCase();
+//   return str.replace(/ /g, '').toLowerCase();
 // };
 // const upperFirstWord = function (str) {
-//   const [first, ...other] = str.split(' ');
-//   return [first.toUpperCase(), ...other].join(' ');
-// };
-// const transformer = function (str, fn) {
-//   console.log(`Original string: ${str}`);
-//   console.log(`Transformed string: ${fn(str)}`);
-//   console.log(`Transformed by ${fn.name}`);
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
 // };
 
+// const transformer = function (str, fn) {
+//   console.log(`Original String: ${str}`);
+//   console.log(`Transformed String: ${fn(str)}`);
+//   console.log(`Transformed by: ${fn.name}`);
+// };
 // transformer('JavaScript is the best', upperFirstWord);
 // transformer('JavaScript is the best', oneWord);
-
-// const high5 = function () {
-//   console.log('HI');
-// };
-// document.body.addEventListener('click', high5);
-
-// ['Jonas', 'Martha', 'Adam'].forEach(high5);
-
-// const greet = function (greeting) {
-//   return function (name) {
-//     console.log(`${greeting} ${name}`);
-//   };
-// };
-// const greeterHey = greet('Hey');
-// greeterHey('Jonas');
-// greeterHey('Steven');
-
-// greet('Heelo')('Jonas');
-
-// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
-// greetArr('HI')('Akho');
 
 // const lufthansa = {
 //   airline: 'Lufthansa',
@@ -81,13 +47,14 @@
 //   bookings: [],
 //   book(flightNum, name) {
 //     console.log(
-//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//       `${name} booked a seat on ${this.airline}
+//       flight ${this.iataCode}${flightNum}`
 //     );
 //     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
 //   },
 // };
-// lufthansa.book('239', 'Jonas Schmedtmann');
-// lufthansa.book(432, 'John Smith');
+// lufthansa.book(239, 'Jonas Schmedtmann');
+// lufthansa.book(635, 'John Smith');
 // console.log(lufthansa);
 
 // const eurowings = {
@@ -95,31 +62,26 @@
 //   iataCode: 'EW',
 //   bookings: [],
 // };
+
 // const book = lufthansa.book;
-// // book(23, 'Sarah Wiliams');
-// book.call(eurowings, 23, 'Sarah Wiliams');
+// book.call(eurowings, 23, 'Sarah Williams');
 // console.log(eurowings);
 
-// book.call(lufthansa, 239, 'Mary Cooper');
+// book.call(lufthansa, 234, 'Akho AAA');
 
 // const swiss = {
 //   airline: 'Swiss Air Lines',
 //   iataCode: 'LX',
 //   bookings: [],
 // };
-// book.call(swiss, 777, 'Akho 0122');
 
-// const flightData = [555, 'George Cooper'];
-// book.apply(swiss, flightData);
-// book.call(swiss, ...flightData);
+// book.call(swiss, 433, 'Mary Cooper');
 
 // const bookEW = book.bind(eurowings);
 // const bookLH = book.bind(lufthansa);
 // const bookLX = book.bind(swiss);
-// bookEW(222, 'Steven Williams');
 
-// const bookEW23 = book.bind(eurowings, 23);
-// bookEW23('Akho0122');
+// bookEW(23, 'Alice Show');
 
 // lufthansa.planes = 300;
 // lufthansa.buyPlane = function () {
@@ -131,52 +93,11 @@
 //   .querySelector('.buy')
 //   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
 
-// const addTax = (rate, value) => value + value * rate;
-// console.log(addTax(0.1, 200));
-
-// const addVAT = addTax.bind(null, 0.23);
-// console.log(addVAT(100));
-// console.log(addVAT(200));
-
-// const addVAT2 = function (rate) {
-//   return function (value) {
-//     return value + value * rate;
-//   };
-// };
-// // const addTaxRate = addVAT2(0.23);
-// // console.log(addTaxRate(200));
-// // console.log(addTaxRate(23));
-// console.log(addVAT2(0.1)(100));
-
-const poll = {
-  question: 'What is your favourite programming language?',
-  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
-  // This generates [0, 0, 0, 0]. More in the next section!
-  answers: new Array(4).fill(0),
-  registerNewAnswer() {
-    const answer = Number(
-      prompt(
-        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
-      )
-    );
-    console.log(answer);
-    typeof answer === 'number' &&
-      answer < this.answers.length &&
-      this.answers[answer]++;
-    this.displayResults();
-    this.displayResults('string');
-  },
-  displayResults(type = 'array') {
-    if (type === 'array') {
-      console.log(this.answers);
-    } else if (type === 'string') {
-      console.log(`Poll results are ${this.answers.join(', ')}`);
-    }
-  },
+const secureBookings = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
 };
-// poll.registerNewAnswer();
-document
-  .querySelector('.poll')
-  .addEventListener('click', poll.registerNewAnswer.bind(poll));
-
-poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+const booker = secureBookings();
